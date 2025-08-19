@@ -22,9 +22,12 @@ dependencies:
   flutter:
     sdk: flutter
   meta: ^1.8.0
-  stripe_android: ^11.5.0
-  stripe_ios: ^11.5.0
-  stripe_platform_interface: ^11.5.1
+  stripe_android: 
+    path: ../stripe_android
+  stripe_ios:
+    path: ../stripe_ios
+  stripe_platform_interface:
+    path: ../stripe_platform_interface
 dev_dependencies:
   flutter_test:
     sdk: flutter
