@@ -33,7 +33,7 @@ dependencies:
   stripe_web:
     git: 
       url: https://github.com/WilliamX1019/flutter_stripe.git
-      path: packages/stripe_web
+      path: packages/stripe_js
   stripe_platform_interface:
     git: 
       url: https://github.com/WilliamX1019/flutter_stripe.git
