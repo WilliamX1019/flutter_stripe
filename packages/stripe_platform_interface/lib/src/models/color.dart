@@ -20,15 +20,27 @@ class ColorKey {
 
 extension ColorX on Color {
   String get colorHexString {
-    // ignore: deprecated_member_use
-    final red = (this.red * 255).toInt().toRadixString(16).padLeft(2, '0');
-    // ignore: deprecated_member_use
-    final green = (this.green * 255).toInt().toRadixString(16).padLeft(2, '0');
-    // ignore: deprecated_member_use
-    final blue = (this.blue * 255).toInt().toRadixString(16).padLeft(2, '0');
-    // ignore: deprecated_member_use
-    final alpha = (this.alpha * 255).toInt().toRadixString(16).padLeft(2, '0');
+    try {
+      // ✅ Flutter 3.22+ (double 0–1)
+      final rValue = (this as dynamic).r;
+      final gValue = (this as dynamic).g;
+      final bValue = (this as dynamic).b;
+      final aValue = (this as dynamic).a;
 
-    return '$alpha$red$green$blue';
+      final red = (rValue * 255).toInt().toRadixString(16).padLeft(2, '0');
+      final green = (gValue * 255).toInt().toRadixString(16).padLeft(2, '0');
+      final blue = (bValue * 255).toInt().toRadixString(16).padLeft(2, '0');
+      final alpha = (aValue * 255).toInt().toRadixString(16).padLeft(2, '0');
+
+      return '$alpha$red$green$blue';
+    } catch (_) {
+      // ✅ Flutter ≤3.19.x (int 0–255)
+      final red = this.red.toRadixString(16).padLeft(2, '0');
+      final green = this.green.toRadixString(16).padLeft(2, '0');
+      final blue = this.blue.toRadixString(16).padLeft(2, '0');
+      final alpha = this.alpha.toRadixString(16).padLeft(2, '0');
+
+      return '$alpha$red$green$blue';
+    }
   }
 }
